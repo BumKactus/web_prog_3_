@@ -1,17 +1,69 @@
-export const myAppsTemplate = (data) => {
-    return `
+export const EarlyAccess = (earlyAccess) => {
+  return `
+    <p class="my-apps-text-1">
+      ${earlyAccess}
+    </p>
+  `;
+};
+
+export const Title = (title) => {
+  return `
+    <p class="my-apps-title">
+      ${title}
+    </p>
+  `;
+};
+
+export const Description = (description) => {
+  return `
+    <p class="my-apps-text-1">
+      ${description}
+    </p>
+  `;
+};
+
+export const EarlyAccessBottom = (earlyAccessBottom) => {
+  return `
+    <p class="my-apps-desc">
+      ${earlyAccessBottom}
+    </p>
+  `;
+};
+
+
+export const createIllustrationTemplate = ({ src, alt }) => {
+  return `
+    <img src="${src}" alt="${alt}" />
+  `;
+};
+export const myAppsTemplate = ({
+  earlyAccess,
+  title,
+  description,
+  earlyAccessBottom,
+  illustration,
+}) => {
+  const earlyAccessTemplate = EarlyAccess(earlyAccess);
+  const titleTemplate = Title(title);
+  const earlyAccessBottomTemplate = EarlyAccessBottom(earlyAccessBottom);
+  const descriptionTemplate = Description(description);
+  const illustrationTemplate = createIllustrationTemplate(illustration);
+
+  const resultTemplate = `
         <section class="my-apps">
             <div class="container">
                 <div class="my-apps-image">
-                    <img src="${data.image.src}" alt="${data.image.alt}">
+                    ${illustrationTemplate}
                 </div>
                 <div class="my-apps-wrapper">
-                    <p class="my-apps-text-1">${data.content.earlyAccess}</p>
-                    <p class="my-apps-title">${data.content.title}</p>
-                    <p class="my-apps-text-1">${data.content.description}</p>
-                    <p class="my-apps-desc">${data.content.earlyAccessBottom}</p>
+                    ${earlyAccessTemplate}
+                    ${titleTemplate}
+                    ${earlyAccessBottomTemplate}
+                    ${descriptionTemplate}
                 </div>
             </div>
         </section>
     `;
+
+  return resultTemplate;
 };
